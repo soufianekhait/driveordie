@@ -1,0 +1,3 @@
+C:/Users/soufi/CLionProjects/driveordie/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/soufi/CLionProjects/driveordie/cmake-build-debug/CMakeFiles/driveordie.dir
+C:/Users/soufi/CLionProjects/driveordie/cmake-build-debug/CMakeFiles/rebuild_cache.dir

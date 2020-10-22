@@ -1,0 +1,3 @@
+C:\Users\soufi\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7660.37\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\driveordie.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\driveordie.dir/objects.a @CMakeFiles\driveordie.dir\objects1.rsp
+C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\driveordie.dir/objects.a -Wl,--no-whole-archive  -o driveordie.exe -Wl,--out-implib,libdriveordie.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\driveordie.dir\linklibs.rsp
