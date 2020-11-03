@@ -142,6 +142,33 @@ driveordie/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\driveordie.dir\build.make CMakeFiles/driveordie.dir/build
 .PHONY : driveordie/fast
 
+Road.obj: Road.c.obj
+
+.PHONY : Road.obj
+
+# target to build an object file
+Road.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\driveordie.dir\build.make CMakeFiles/driveordie.dir/Road.c.obj
+.PHONY : Road.c.obj
+
+Road.i: Road.c.i
+
+.PHONY : Road.i
+
+# target to preprocess a source file
+Road.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\driveordie.dir\build.make CMakeFiles/driveordie.dir/Road.c.i
+.PHONY : Road.c.i
+
+Road.s: Road.c.s
+
+.PHONY : Road.s
+
+# target to generate assembly for a file
+Road.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\driveordie.dir\build.make CMakeFiles/driveordie.dir/Road.c.s
+.PHONY : Road.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -178,6 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... driveordie
+	@echo ... Road.obj
+	@echo ... Road.i
+	@echo ... Road.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

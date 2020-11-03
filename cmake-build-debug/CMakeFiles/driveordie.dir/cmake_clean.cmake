@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/driveordie.dir/Road.c.obj"
   "CMakeFiles/driveordie.dir/main.c.obj"
   "driveordie.exe"
   "driveordie.exe.manifest"
