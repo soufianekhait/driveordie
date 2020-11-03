@@ -54,19 +54,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\Users\soufi\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7660.37\bin\cmake\win\bin\cmake.exe
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = C:\Users\soufi\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7660.37\bin\cmake\win\bin\cmake.exe -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\soufi\CLionProjects\driveordie
+CMAKE_SOURCE_DIR = "C:\Users\Alex\Desktop\ENAC\S7\Langage C\driveordie"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\soufi\CLionProjects\driveordie\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\Alex\Desktop\ENAC\S7\Langage C\driveordie\cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -93,14 +93,14 @@ clean: CMakeFiles/driveordie.dir/clean
 CMakeFiles/driveordie.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\driveordie.dir\build.make CMakeFiles/driveordie.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\driveordie.dir\build.make CMakeFiles/driveordie.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\soufi\CLionProjects\driveordie\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target driveordie"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\Alex\Desktop\ENAC\S7\Langage C\driveordie\cmake-build-debug\CMakeFiles" --progress-num=1,2 "Built target driveordie"
 .PHONY : CMakeFiles/driveordie.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/driveordie.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\soufi\CLionProjects\driveordie\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Alex\Desktop\ENAC\S7\Langage C\driveordie\cmake-build-debug\CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/driveordie.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\soufi\CLionProjects\driveordie\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Alex\Desktop\ENAC\S7\Langage C\driveordie\cmake-build-debug\CMakeFiles" 0
 .PHONY : CMakeFiles/driveordie.dir/rule
 
 # Convenience name for target.

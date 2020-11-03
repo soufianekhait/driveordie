@@ -1,19 +1,19 @@
 Determining if the include file pthread.h exists failed with the following output:
-Change Dir: C:/Users/soufi/CLionProjects/driveordie/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Alex/Desktop/ENAC/S7/Langage C/driveordie/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/MinGW/bin/mingw32-make.exe cmTC_f989c/fast && C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\cmTC_f989c.dir\build.make CMakeFiles/cmTC_f989c.dir/build
-mingw32-make.exe[1]: Entering directory 'C:/Users/soufi/CLionProjects/driveordie/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f989c.dir/CheckIncludeFile.c.obj
-C:\MinGW\bin\gcc.exe   -std=gnu99 -o CMakeFiles\cmTC_f989c.dir\CheckIncludeFile.c.obj   -c C:\Users\soufi\CLionProjects\driveordie\cmake-build-debug\CMakeFiles\CMakeTmp\CheckIncludeFile.c
-C:\Users\soufi\CLionProjects\driveordie\cmake-build-debug\CMakeFiles\CMakeTmp\CheckIncludeFile.c:1:10: fatal error: pthread.h: No such file or directory
-    1 | #include <pthread.h>
-      |          ^~~~~~~~~~~
+Run Build Command(s):C:/MinGW/bin/mingw32-make.exe cmTC_c1c86/fast && C:/MinGW/bin/mingw32-make.exe  -f CMakeFiles\cmTC_c1c86.dir\build.make CMakeFiles/cmTC_c1c86.dir/build
+mingw32-make.exe[1]: Entering directory 'C:/Users/Alex/Desktop/ENAC/S7/Langage C/driveordie/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c1c86.dir/CheckIncludeFile.c.obj
+C:\MinGW\bin\gcc.exe   -std=gnu99 -o CMakeFiles\cmTC_c1c86.dir\CheckIncludeFile.c.obj   -c "C:\Users\Alex\Desktop\ENAC\S7\Langage C\driveordie\cmake-build-debug\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+C:\Users\Alex\Desktop\ENAC\S7\Langage C\driveordie\cmake-build-debug\CMakeFiles\CMakeTmp\CheckIncludeFile.c:1:21: fatal error: pthread.h: No such file or directory
+ #include <pthread.h>
+                     ^
 compilation terminated.
-CMakeFiles\cmTC_f989c.dir\build.make:84: recipe for target 'CMakeFiles/cmTC_f989c.dir/CheckIncludeFile.c.obj' failed
-mingw32-make.exe[1]: *** [CMakeFiles/cmTC_f989c.dir/CheckIncludeFile.c.obj] Error 1
-mingw32-make.exe[1]: Leaving directory 'C:/Users/soufi/CLionProjects/driveordie/cmake-build-debug/CMakeFiles/CMakeTmp'
-Makefile:140: recipe for target 'cmTC_f989c/fast' failed
-mingw32-make.exe: *** [cmTC_f989c/fast] Error 2
+CMakeFiles\cmTC_c1c86.dir\build.make:84: recipe for target 'CMakeFiles/cmTC_c1c86.dir/CheckIncludeFile.c.obj' failed
+mingw32-make.exe[1]: *** [CMakeFiles/cmTC_c1c86.dir/CheckIncludeFile.c.obj] Error 1
+mingw32-make.exe[1]: Leaving directory 'C:/Users/Alex/Desktop/ENAC/S7/Langage C/driveordie/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:140: recipe for target 'cmTC_c1c86/fast' failed
+mingw32-make.exe: *** [cmTC_c1c86/fast] Error 2
 
 
 
