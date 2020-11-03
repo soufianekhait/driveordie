@@ -51,5 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-#IDE directories
+# IDE directories
 .idea/
+
+# Cmake build debug directory
+cmake-build-debug/
