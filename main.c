@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
         goto Quit;
     }
     window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                              SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+                              SCREEN_WIDTH, SCREEN_HEIGHT*1.2, SDL_WINDOW_SHOWN);
     SDL_SetWindowTitle(window, "DriveOrDie");
     if(NULL == window)
     {
