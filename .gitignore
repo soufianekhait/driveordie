@@ -54,5 +54,7 @@ dkms.conf
 # IDE directories
 .idea/
 
-# Cmake build debug directory
+# Cmake config
 cmake-build-debug/
+CMakeLists.txt
+cmake/
