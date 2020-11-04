@@ -1,7 +1,3 @@
-//
-// Created by Alex on 03/11/2020.
-//
-
 #include "Road.h"
 
 void road(SDL_Renderer* renderer, const int SCREEN_WIDTH,const int SCREEN_HEIGHT){
@@ -38,7 +34,15 @@ void road(SDL_Renderer* renderer, const int SCREEN_WIDTH,const int SCREEN_HEIGHT
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderFillRects(renderer, pointilles, 15);
 
-    SDL_Delay(500);
     SDL_RenderPresent(renderer);
-    SDL_Delay(2000);
+
+    int quit = 0;
+    SDL_Event e;
+    while (!quit) {
+        while (SDL_PollEvent(&e)) {
+            if (e.type == SDL_QUIT) {
+                quit = 1;
+            }
+        }
+    }
 }
