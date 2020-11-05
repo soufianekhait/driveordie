@@ -3,6 +3,11 @@
 
 const int SCREEN_WIDTH = 840;
 const int SCREEN_HEIGHT = 680;
+// DOT Dimensions
+const int DOT_WIDTH = 20;
+const int DOT_HEIGHT = 20;
+// DOT Velocity
+const int DOT_VEL = 10;
 
 int main(int argc, char *argv[]){
     SDL_Window *window = NULL;
