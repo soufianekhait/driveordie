@@ -1,9 +1,14 @@
+// Road.c
 #include "Road.h"
 
-void road(SDL_Renderer* renderer, const int SCREEN_WIDTH,const int SCREEN_HEIGHT){
-    SDL_Rect route = { SCREEN_WIDTH / 4, 0, SCREEN_WIDTH /2, SCREEN_HEIGHT*2 };
-    SDL_SetRenderDrawColor( renderer, 0x00, 0x00, 0x00, 0xFF );
-    SDL_RenderFillRect( renderer, &route );
+
+void init_road(SDL_Renderer* renderer, int SCREEN_WIDTH, int SCREEN_HEIGHT){
+    // define a rectangle
+    SDL_Rect route = { SCREEN_WIDTH / 4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT*2};
+    // fill it with brown color
+    SDL_SetRenderDrawColor(renderer, 201, 173, 167, 0);
+
+    SDL_RenderFillRect(renderer, &route);
 
     SDL_Rect bandeslaterales[8]; // Création des bandes latérales colonne par colonne
     bandeslaterales[0].x=bandeslaterales[1].x=bandeslaterales[2].x=bandeslaterales[3].x=(SCREEN_WIDTH/4)+5;
@@ -12,6 +17,7 @@ void road(SDL_Renderer* renderer, const int SCREEN_WIDTH,const int SCREEN_HEIGHT
     bandeslaterales[1].y=bandeslaterales[5].y=(SCREEN_HEIGHT/2)+5;
     bandeslaterales[2].y=bandeslaterales[6].y=SCREEN_HEIGHT+5;
     bandeslaterales[3].y=bandeslaterales[7].y=SCREEN_HEIGHT+(SCREEN_HEIGHT/2)+5;
+
     for(int i = 0; i!=8;i++)
     {
         bandeslaterales[i].w = 12;
@@ -55,6 +61,7 @@ void road(SDL_Renderer* renderer, const int SCREEN_WIDTH,const int SCREEN_HEIGHT
     SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderFillRects(renderer, pointilles, 30);
 
+    // Show renderer's content
     SDL_RenderPresent(renderer);
 
     int quit = 0;
