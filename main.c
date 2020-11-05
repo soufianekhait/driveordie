@@ -1,6 +1,4 @@
-#include <SDL2/SDL.h>
-#include <stdio.h>
-#include <stdlib.h>
+// main.c
 #include "Road.h"
 
 const int SCREEN_WIDTH = 840;
@@ -9,49 +7,60 @@ const int SCREEN_HEIGHT = 680;
 int main(int argc, char *argv[]){
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
-    int statut = EXIT_FAILURE;
+    SDL_DisplayMode dm;
     SDL_Color orange = {255, 127, 40, 255};
+    SDL_Color green = { 87, 167, 115, 255 };
 
-    /* Initialisation, création de la fenêtre et du renderer. */
+    // initialize SDL
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
         fprintf(stderr, "SDL_Init Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
-
-    window = SDL_CreateWindow("Drive or Die",
-                              SDL_WINDOWPOS_CENTERED,
-                              SDL_WINDOWPOS_CENTERED,
-                              SCREEN_WIDTH,
-                              SCREEN_HEIGHT,
-                              SDL_WINDOW_SHOWN);
-    SDL_SetWindowTitle(window, "DriveOrDie");
-
-    if(window == NULL){
-        fprintf(stderr, "SDL_CreateWindow Error: %s", SDL_GetError());
+    // get actual desktop height
+    if (SDL_GetDesktopDisplayMode(0, &dm) != 0) {
+        SDL_Log("SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
         return EXIT_FAILURE;
+    } else{
+        // create window
+        window = SDL_CreateWindow("Drive or Die",
+                                  SDL_WINDOWPOS_CENTERED,
+                                  SDL_WINDOWPOS_CENTERED,
+                                  SCREEN_WIDTH,
+                                  dm.h-80,
+                                  SDL_WINDOW_SHOWN);
+        // check if window exists
+        if(window == NULL){
+            fprintf(stderr, "SDL_CreateWindow Error: %s", SDL_GetError());
+            return EXIT_FAILURE;
+        }
     }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    // create a render engine
+    renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_ACCELERATED);
+    // check if renderer exists
     if(renderer == NULL){
         fprintf(stderr, "SDL_CreateRenderer Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
 
-    /* C’est à partir de maintenant que ça se passe. */
-    if(SDL_SetRenderDrawColor(renderer, orange.r, orange.g, orange.b, orange.a) < 0){
+    // define a color for renderer
+    if(SDL_SetRenderDrawColor(renderer, green.r, green.g, green.b, green.a) < 0){
         fprintf(stderr, "SDL_SetRenderDrawColor Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
-
-    if(SDL_RenderClear(renderer) != 0){
+    // fill background with the defined color
+    if(SDL_RenderClear(renderer) < 0){
         fprintf(stderr, "SDL_RenderClear Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
 
-    road(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
-
+    // draw a road
+    init_road(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+    // free renderer memory space
     SDL_DestroyRenderer(renderer);
+    // free window memory space
     SDL_DestroyWindow(window);
+    // quit SDL
     SDL_Quit();
 
     return 0;
