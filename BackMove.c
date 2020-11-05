@@ -20,11 +20,11 @@ void backMove(SDL_Renderer* renderer){
     SDL_RenderClear( renderer );
 
     //Render background
-    gBGTexture.render( scrollingOffset, 0 );
+    /*gBGTexture.render( scrollingOffset, 0 );
     gBGTexture.render( scrollingOffset + gBGTexture.getWidth(), 0 );
 
     //Render objects
-    dot.render();
+    dot.render();*/
 
     //Update screen
     SDL_RenderPresent( renderer );
