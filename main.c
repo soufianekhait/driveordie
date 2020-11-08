@@ -1,8 +1,6 @@
 // main.c
 #include "Road.h"
 
-const int SCREEN_WIDTH = 840;
-const int SCREEN_HEIGHT = 680;
 // DOT Dimensions
 const int DOT_WIDTH = 20;
 const int DOT_HEIGHT = 20;
@@ -21,6 +19,10 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "SDL_Init Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
+    /*if(IMG_Init(IMG_INIT_PNG) < 0){
+        fprintf(stderr, "IMG_Init Error: %s", SDL_GetError());
+        return EXIT_FAILURE;
+    }*/
     // get actual desktop height
     if (SDL_GetDesktopDisplayMode(0, &dm) != 0) {
         SDL_Log("SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
@@ -60,7 +62,7 @@ int main(int argc, char *argv[]){
     }
 
     // draw a road
-    init_road(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+    init_road(renderer);
     // free renderer memory space
     SDL_DestroyRenderer(renderer);
     // free window memory space
