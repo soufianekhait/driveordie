@@ -35,8 +35,6 @@ int function_score(){
     return score;
 }
 
-const int SCREEN_WIDTH = 840;
-const int SCREEN_HEIGHT = 680;
 // DOT Dimensions
 const int DOT_WIDTH = 20;
 const int DOT_HEIGHT = 20;
@@ -96,7 +94,7 @@ int main(int argc, char *argv[]){
     printf("Your final score is : %03d\n",function_score());
 
     // draw a road
-    init_road(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+    init_road(renderer);
     // free renderer memory space
     SDL_DestroyRenderer(renderer);
     // free window memory space
