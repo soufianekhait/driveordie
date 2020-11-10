@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
 
 void init_road(SDL_Renderer*, int, int);
 
