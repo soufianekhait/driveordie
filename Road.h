@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#define SCREEN_WIDTH 840
+#define SCREEN_HEIGHT 680
 
-
-void init_road(SDL_Renderer*, int, int);
+int init_road(SDL_Renderer*);
 
 #endif //DRIVEORDIE_ROAD_H
