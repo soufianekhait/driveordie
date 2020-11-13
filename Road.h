@@ -8,6 +8,10 @@
 #include <time.h>
 #define SCREEN_WIDTH 840
 #define SCREEN_HEIGHT 680
+#define ROAD_LEFT (SCREEN_WIDTH/4)+20
+#define ROAD_RIGHT (SCREEN_WIDTH - ((SCREEN_WIDTH/4)-20)
+#define DASHED_WIDTH 5
+#define WAY_WIDTH 91.25
 
 int init_road(SDL_Renderer*, SDL_Texture*);
 

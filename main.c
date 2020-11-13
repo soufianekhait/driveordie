@@ -1,5 +1,6 @@
 // main.c
 #include "Road.h"
+#include "Car.h"
 
 void wait(float time)
 {
@@ -54,6 +55,7 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "SDL_Init Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
+
     // initialize SDL Image
     /*if(!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)){
         fprintf(stderr, "SDL_Init Error: %s", IMG_GetError());
@@ -112,6 +114,7 @@ int main(int argc, char *argv[]){
     //printf("Your final score is : %03d\n",function_score());
     // draw a road
     init_road(renderer, background);
+    addCar(renderer);
     // free texture memory space
     SDL_DestroyTexture(background);
     // free renderer memory space
