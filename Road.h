@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 #define SCREEN_WIDTH 840
 #define SCREEN_HEIGHT 680
 
