@@ -54,13 +54,6 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "SDL_Init Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
-    // initialize SDL Image
-    /*if(!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)){
-        fprintf(stderr, "SDL_Init Error: %s", IMG_GetError());
-        return EXIT_FAILURE;
-    } else{
-        printf("Hey");
-    }*/
     // get actual desktop height
     if (SDL_GetDesktopDisplayMode(0, &dm) != 0) {
         SDL_Log("SDL_GetDesktopDisplayMode failed: %s", SDL_GetError());
@@ -80,7 +73,11 @@ int main(int argc, char *argv[]){
             return EXIT_FAILURE;
         }
     }
-
+    // initialize SDL Image
+    if((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
+        fprintf(stderr, "IMG_Init Error: %s", IMG_GetError());
+        return EXIT_FAILURE;
+    }
     // create a render engine
     renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_ACCELERATED);
     // check if renderer exists
@@ -119,7 +116,7 @@ int main(int argc, char *argv[]){
     // free window memory space
     SDL_DestroyWindow(window);
     // quit SDL Image
-    //IMG_Quit();
+    IMG_Quit();
     // quit SDL
     SDL_Quit();
 
