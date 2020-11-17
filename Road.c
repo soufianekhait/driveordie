@@ -42,7 +42,7 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
     // set dashed lines dimensions
     SDL_Rect dashedLines[32];
     for(int i=0; i<32; i++){
-        dashedLines[i].w = 5;
+        dashedLines[i].w = DASHED_WIDTH;
         dashedLines[i].h = 60;
     }
 
@@ -50,12 +50,12 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
     int pos = 25;
     for (int j=0; j<32; j++){
         if (j<10)
-            dashedLines[j].x = (SCREEN_WIDTH/3) + 30;
+            dashedLines[j].x = ROAD_LEFT+ WAY_WIDTH;
         else if (j<20){
-            dashedLines[j].x = (SCREEN_WIDTH/2) - dashedLines[j].w;
+            dashedLines[j].x = ROAD_LEFT + DASHED_WIDTH + WAY_WIDTH*2;
             if (j==10) pos = 25;
         } else{
-            dashedLines[j].x = SCREEN_WIDTH - ((SCREEN_WIDTH/3) + 30);
+            dashedLines[j].x = ROAD_LEFT + DASHED_WIDTH*2 + WAY_WIDTH*3;
             if (j==20) pos = 25;
         }
         dashedLines[j].y = pos;

@@ -17,7 +17,7 @@ project(driveordie)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
-set(SOURCE_FILES    main.c)
+set(SOURCE_FILES    main.c Car.c Car.h)
 
 Message("")
 Message( STATUS "SOURCE entry point : " ${SOURCE_FILES} )
@@ -27,7 +27,7 @@ Message("")
 
 # ------- Executable ----- #
 
-ADD_EXECUTABLE(driveordie ${SOURCE_FILES} Road.c BackMove.c)
+ADD_EXECUTABLE(driveordie ${SOURCE_FILES} Road.c)
 
 # ------- End Executable - #
 
