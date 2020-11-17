@@ -27,7 +27,7 @@ Message("")
 
 # ------- Executable ----- #
 
-ADD_EXECUTABLE(driveordie ${SOURCE_FILES} Road.c BackMove.c )
+ADD_EXECUTABLE(driveordie ${SOURCE_FILES} Road.c BackMove.c)
 
 # ------- End Executable - #
 
