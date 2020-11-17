@@ -70,25 +70,60 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
         return EXIT_FAILURE;
     }
 
-    /*SDL_Surface* image = IMG_Load("resources/img/car.png");
-    if(!image){
-        printf("Error while loading image: %s",SDL_GetError());
-        return -1;
-    }*/
+    SDL_Surface* car = IMG_Load("resources/img/car.png");
+    if(!car){
+        printf("Error while loading image: %s", SDL_GetError());
+        return EXIT_FAILURE;
+    }
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
+    //SDL_Texture *txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 201/3, 506/3);
+
+    //SDL_SetRenderTarget(renderer, txt);
+    SDL_Texture *texture_car = SDL_CreateTextureFromSurface(renderer, car);
+    SDL_Rect dimensions = { SCREEN_WIDTH/2 + 20,SCREEN_HEIGHT - car->h/3 - 10, car->w/3,car->h/3 };
+    SDL_Rect src = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+    //SDL_SetRenderTarget(renderer, NULL);
 
 
     int running = 1;
     const int FPS = 60;
     const int speed = 5;
     Uint32 start;
+    int deltatime = 0;
+    int FPSCounter = 0;
+    int FPS2 = 0;
     //SDL_Rect imgloc = { 350,170,100,100 };
     SDL_Rect camera = { SCREEN_WIDTH/4, SCREEN_HEIGHT, SCREEN_WIDTH/2, SCREEN_HEIGHT };
-
+    float move = 0;
     while(running){
         SDL_Event e;
+        float deltatime = ((SDL_GetTicks() - start) / 1000.0f);
         while (SDL_PollEvent(&e)){
-            if (e.type == SDL_QUIT)
-                running = 0;
+            switch(e.type){
+                case SDL_QUIT:
+                    running = 0;
+                    break;
+                case SDL_KEYDOWN:
+                    switch(e.key.keysym.sym){
+
+                        case SDLK_ESCAPE:
+                            running = 0;
+                            break;
+                        case SDLK_RIGHT:
+                            if(dimensions.x + dimensions.w < camera.x + camera.w - solidLines->w - 8){
+                                move+= 2.0f * deltatime;
+                                dimensions.x += move;
+                            }
+                            break;
+                        case SDLK_LEFT:
+                            if(dimensions.x > camera.x + solidLines->w + 8){
+                                move+= 2.0f * deltatime;
+                                dimensions.x -= move;
+                            }
+                            break;
+                    }
+                    break;
+            }
         }
         start = SDL_GetTicks();
         camera.y -= speed;
@@ -98,6 +133,7 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
         SDL_Rect location = {SCREEN_WIDTH/4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT };
         SDL_SetRenderTarget(renderer, NULL);
         SDL_RenderCopy(renderer, texture, &camera, &location);
+        SDL_RenderCopy(renderer, texture_car, &src, &dimensions);
         //if(collision(&location, &imgloc))
             //SDL_BlitSurface(image, NULL, screen, &relcoord);
 
@@ -106,7 +142,7 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
             SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
         }
     }
-
+    //SDL_DestroyTexture(texture_car);  // on n'aura plus besoin de la texture tampon*/
     // Show renderer's content
     //SDL_RenderPresent(renderer);
 
@@ -122,7 +158,7 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
     }*/
 
     // free surface memory space
-    //SDL_FreeSurface(image);
+    SDL_FreeSurface(car);
 
     return 0;
 }
