@@ -13,6 +13,13 @@
 #include <time.h>
 #include <math.h>
 
+extern SDL_Surface* car_img;
+extern SDL_Texture* car_txt;
+extern SDL_Surface* obstacle_img;
+extern SDL_Texture* texture_obstacle;
+extern SDL_Texture* texture_obstacle2;
+extern SDL_Texture* texture_obstacle3;
+
 // define constants
 #define SCREEN_WIDTH 840
 #define SCREEN_HEIGHT 680
