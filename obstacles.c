@@ -2,12 +2,23 @@
 // Created by Alex on 18/11/2020.
 //
 
-#include "obstacles.h"
+#include "src/modules/obstacles.h"
 
 //float bouge = 0;
 int newx = ROAD_LEFT;
 int newx2 = 0;
 int newx3 = 0;
+
+
+SDL_Surface* draw_obstacles() {
+    SDL_Surface *obstacle = IMG_Load("resources/img/car_3.png");
+    /*if (!obstacle) {
+        printf("Error while loading image: %s", SDL_GetError());
+        return EXIT_FAILURE;
+    }          */
+    return obstacle;
+}
+
 
 int random_obstacles(SDL_Renderer* renderer, SDL_Texture* texture_obstacle,SDL_Texture* texture_obstacle2,SDL_Texture* texture_obstacle3, int speed, SDL_Surface* obstacle){
     SDL_Rect src = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -116,4 +127,9 @@ int random_obstacles(SDL_Renderer* renderer, SDL_Texture* texture_obstacle,SDL_T
     }
 
     return newx;
+}
+
+
+void destroy_obstacles(SDL_Surface* obstacle){
+    SDL_FreeSurface(obstacle);
 }
