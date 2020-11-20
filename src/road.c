@@ -2,9 +2,9 @@
  *  Including Road module
  */
 
-#include "src/modules/road.h"
-#include "src/modules/car.h"
-#include "src/modules/obstacles.h"
+#include "modules/road.h"
+#include "modules/car.h"
+#include "modules/obstacles.h"
 
 
 void draw_solidLines(SDL_Rect solidLines[]){
@@ -92,7 +92,7 @@ int draw_road() {
 }
 
 
-void move_road(SDL_Texture* carTxt, SDL_Rect car, SDL_Rect src, SDL_Texture* texture_obstacle, SDL_Texture* texture_obstacle2, SDL_Texture* texture_obstacle3, SDL_Surface* obstacle_img) {
+void move_road() {
     int running = 1;
     float move = 0;
     const int FPS = 60;
@@ -101,17 +101,20 @@ void move_road(SDL_Texture* carTxt, SDL_Rect car, SDL_Rect src, SDL_Texture* tex
     //SDL_Rect imgloc = { 350,170,100,100 };
     SDL_Rect location = { SCREEN_WIDTH/4, SCREEN_HEIGHT, SCREEN_WIDTH/2, SCREEN_HEIGHT };
     SDL_Rect camera = {SCREEN_WIDTH/4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT };
+    // car source on texture and car dest on render
+    SDL_Rect carOnTxt = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+    SDL_Rect carOnRnd = { SCREEN_WIDTH/2 + 20, SCREEN_HEIGHT - car_img->h/3 - 10, car_img->w/3,car_img->h/3 };
 
     while(running){
         SDL_Event e;
-        float deltatime = (SDL_GetTicks() - start) / 1000.0f;
+        float deltaTime = (SDL_GetTicks() - start) / 1000.0f;
         while (SDL_PollEvent(&e)){
             switch(e.type){
                 case SDL_QUIT:
                     running = 0;
                     break;
                 case SDL_KEYDOWN:
-                    move_car(e, deltatime, &location, &car, &move, running, 15);
+                    move_car(e, deltaTime, &location, &carOnRnd, &move, running, 15);
                     break;
             }
         }
@@ -120,8 +123,7 @@ void move_road(SDL_Texture* carTxt, SDL_Rect car, SDL_Rect src, SDL_Texture* tex
         if (location.y <= 0)
             location.y = location.h;
 
-
-        display(location, camera, carTxt, src, car, texture_obstacle, texture_obstacle2, texture_obstacle3, obstacle_img);
+        display(location, camera, carOnTxt, carOnRnd);
         //if(collision(&location, &imgloc))
         //SDL_BlitSurface(image, NULL, screen, &relcoord);
 
@@ -132,11 +134,11 @@ void move_road(SDL_Texture* carTxt, SDL_Rect car, SDL_Rect src, SDL_Texture* tex
 }
 
 
-void display(SDL_Rect location, SDL_Rect camera, SDL_Texture* carTxt, SDL_Rect src, SDL_Rect car, SDL_Texture* texture_obstacle, SDL_Texture* texture_obstacle2, SDL_Texture* texture_obstacle3, SDL_Surface* obstacle){
+void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car){
     SDL_SetRenderTarget(renderer, NULL);
     SDL_RenderCopy(renderer, background, &location, &camera);
-    SDL_RenderCopy(renderer, carTxt, &src, &car);
-    random_obstacles(renderer, texture_obstacle, texture_obstacle2, texture_obstacle3, location.y, obstacle);
+    SDL_RenderCopy(renderer, car_txt, &src, &car);
+    randomize_obstacles(location.y);
     // Show renderer's content
     SDL_RenderPresent(renderer);
 }
