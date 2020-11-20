@@ -5,6 +5,7 @@
 #include "src/modules/main.h"
 #include "src/modules/road.h"
 #include "src/modules/car.h"
+#include "obstacles.h"
 
 
 void wait(float time)
