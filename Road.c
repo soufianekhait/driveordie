@@ -1,5 +1,6 @@
 // Road.c
 #include "Road.h"
+#include "obstacles.h"
 
 
 int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
@@ -75,13 +76,23 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
+    SDL_Surface* obstacle = IMG_Load("resources/img/car_3.png");
+    if(!obstacle){
+        printf("Error while loading image: %s", SDL_GetError());
+        return EXIT_FAILURE;
+    }
+
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
     //SDL_Texture *txt = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, 201/3, 506/3);
 
     //SDL_SetRenderTarget(renderer, txt);
     SDL_Texture *texture_car = SDL_CreateTextureFromSurface(renderer, car);
+    SDL_Texture *texture_obstacle = SDL_CreateTextureFromSurface(renderer, obstacle);
+    SDL_Texture *texture_obstacle2 = SDL_CreateTextureFromSurface(renderer, obstacle);
+    SDL_Texture *texture_obstacle3 = SDL_CreateTextureFromSurface(renderer, obstacle);
     SDL_Rect dimensions = { SCREEN_WIDTH/2 + 20,SCREEN_HEIGHT - car->h/3 - 10, car->w/3,car->h/3 };
     SDL_Rect src = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+//    SDL_Rect car_obstacle = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle->h/3 };
     //SDL_SetRenderTarget(renderer, NULL);
 
 
@@ -89,7 +100,7 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
     const int FPS = 60;
     const int speed = 5;
     Uint32 start;
-    int deltatime = 0;
+    //int deltatime = 0;
     int FPSCounter = 0;
     int FPS2 = 0;
     //SDL_Rect imgloc = { 350,170,100,100 };
@@ -125,18 +136,28 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
                     break;
             }
         }
+
         start = SDL_GetTicks();
         camera.y -= speed;
-        if (camera.y <= 0)
+        if (camera.y <= 0){
             camera.y = camera.h;
+//            car_obstacle.x = x;
+            //printf("%d\n", car_obstacle.x);
+        }
+
 
         SDL_Rect location = {SCREEN_WIDTH/4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT };
         SDL_SetRenderTarget(renderer, NULL);
+        //printf("%.2f\n", deltatime);
         SDL_RenderCopy(renderer, texture, &camera, &location);
         SDL_RenderCopy(renderer, texture_car, &src, &dimensions);
+        random_obstacles(renderer, texture_obstacle, texture_obstacle2, texture_obstacle3, camera.y, obstacle);
+//        printf("%d\n", x);
+
+        //SDL_RenderCopy(renderer, texture_obstacle, &src, &car_obstacle);
         //if(collision(&location, &imgloc))
             //SDL_BlitSurface(image, NULL, screen, &relcoord);
-
+        //printf("%d\n", car_obstacle.x);
         SDL_RenderPresent(renderer);
         if(1000/FPS > SDL_GetTicks()-start){
             SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
@@ -158,6 +179,7 @@ int init_road(SDL_Renderer* renderer, SDL_Texture* texture){
     }*/
 
     // free surface memory space
+    SDL_FreeSurface(obstacle);
     SDL_FreeSurface(car);
 
     return 0;

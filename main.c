@@ -1,6 +1,7 @@
 // main.c
 #include "Road.h"
 //#include "Car.h"
+#include "obstacles.h"
 
 void wait(float time)
 {
@@ -111,6 +112,7 @@ int main(int argc, char *argv[]){
     // draw a road
     init_road(renderer, background);
     //addCar(renderer);
+
     // free texture memory space
     SDL_DestroyTexture(background);
     // free renderer memory space
