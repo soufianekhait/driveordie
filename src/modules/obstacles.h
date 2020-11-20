@@ -1,13 +1,18 @@
 //
-// Created by Alex on 18/11/2020.
+// Obstacle module
 //
 
 #ifndef DRIVEORDIE_OBSTACLES_H
 #define DRIVEORDIE_OBSTACLES_H
+
+// include modules
 #include "road.h"
 
-int random_obstacles(SDL_Renderer*, SDL_Texture*,SDL_Texture*,SDL_Texture*, int, SDL_Surface*);
-SDL_Surface* draw_obstacles();
-void destroy_obstacles(SDL_Surface* obstacle);
+#define WAY_WIDTH 91.25
+
+// signatures
+int randomize_obstacles(int speed);
+int load_obstacle();
+void destroy_obstacle();
 
 #endif //DRIVEORDIE_OBSTACLES_H
