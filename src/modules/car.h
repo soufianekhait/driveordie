@@ -1,14 +1,16 @@
 //
-// Created by soufiane on 17/11/2020.
+// Car module
 //
 
 #ifndef DRIVEORDIE_CAR_H
 #define DRIVEORDIE_CAR_H
 
+// include modules
 #include "road.h"
 
-SDL_Surface* draw_car();
-int move_car(SDL_Event e, float deltatime, SDL_Rect* camera, SDL_Rect* dimensions, float* move, int running, int solidLines);
-void destroy_car(SDL_Texture* carTxt, SDL_Surface* car_img);
+// signatures
+int load_car();
+int move_car(SDL_Event e, float deltaTime, SDL_Rect* camera, SDL_Rect* dimensions, float* move, int running, int solidLines);
+void destroy_car();
 
 #endif //DRIVEORDIE_CAR_H
