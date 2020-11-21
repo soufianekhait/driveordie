@@ -6,6 +6,7 @@
 #include "src/modules/road.h"
 #include "src/modules/car.h"
 #include "src/modules/obstacles.h"
+#include "src/modules/collision.h"
 
 
 void wait(float time)
@@ -132,19 +133,20 @@ void draw(){
     draw_road();
     // draw the player
     SDL_Surface *car_img = draw_car();
-    SDL_Surface *obsctale_img = draw_obstacles();
+    SDL_Surface *obstacle_img = draw_obstacles();
 
     SDL_Texture *carTxt = SDL_CreateTextureFromSurface(renderer, car_img);
     SDL_Rect car = { SCREEN_WIDTH/2 + 20, SCREEN_HEIGHT - car_img->h/3 - 10, car_img->w/3,car_img->h/3 };
     SDL_Rect src = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 
-    SDL_Texture *texture_obstacle = SDL_CreateTextureFromSurface(renderer, obsctale_img);
-    SDL_Texture *texture_obstacle2 = SDL_CreateTextureFromSurface(renderer, obsctale_img);
-    SDL_Texture *texture_obstacle3 = SDL_CreateTextureFromSurface(renderer, obsctale_img);
+    SDL_Texture *texture_obstacle = SDL_CreateTextureFromSurface(renderer, obstacle_img);
+    SDL_Texture *texture_obstacle2 = SDL_CreateTextureFromSurface(renderer, obstacle_img);
+    SDL_Texture *texture_obstacle3 = SDL_CreateTextureFromSurface(renderer, obstacle_img);
 
-    move_road(carTxt, car, src, texture_obstacle, texture_obstacle2, texture_obstacle3, obsctale_img);
+
+    move_road(carTxt, car, src, texture_obstacle, texture_obstacle2, texture_obstacle3, obstacle_img);
     destroy_car(carTxt, car_img);
-    destroy_obstacles(obsctale_img);
+    destroy_obstacles(obstacle_img);
 }
 
 

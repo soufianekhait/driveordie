@@ -13,10 +13,10 @@
 
 // define signatures
 int draw_road();
-void move_road(SDL_Texture* carTxt, SDL_Rect car, SDL_Rect src, SDL_Texture* texture_obstacle, SDL_Texture* texture_obstacle2, SDL_Texture* texture_obstacle3, SDL_Surface* obsctale_img);
+void move_road(SDL_Texture* carTxt, SDL_Rect car, SDL_Rect src, SDL_Texture* texture_obstacle, SDL_Texture* texture_obstacle2, SDL_Texture* texture_obstacle3, SDL_Surface* obstacle_img);
 void draw_dashedLines(SDL_Rect tab[]);
 void draw_solidLines(SDL_Rect tab[]);
-void display(SDL_Rect location, SDL_Rect camera, SDL_Texture* carTxt, SDL_Rect src, SDL_Rect car, SDL_Texture* texture_obstacle, SDL_Texture* texture_obstacle2, SDL_Texture* texture_obstacle3, SDL_Surface* obsctale_img);
+void display(SDL_Rect location, SDL_Rect camera, SDL_Texture* carTxt, SDL_Rect src, SDL_Rect car, SDL_Texture* texture_obstacle, SDL_Texture* texture_obstacle2, SDL_Texture* texture_obstacle3, SDL_Surface* obstacle_img);
 
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;

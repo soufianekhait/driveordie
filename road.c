@@ -5,6 +5,7 @@
 #include "src/modules/road.h"
 #include "src/modules/car.h"
 #include "src/modules/obstacles.h"
+#include "src/modules/collision.h"
 
 
 void draw_solidLines(SDL_Rect solidLines[]){
@@ -128,6 +129,9 @@ void move_road(SDL_Texture* carTxt, SDL_Rect car, SDL_Rect src, SDL_Texture* tex
         if(1000/FPS > SDL_GetTicks()-start){
             SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
         }
+//        if (collisiondetection(car, car_obstacle, car_obstacle2, car_obstacle3)==0){
+//            running = 0;
+//        }
     }
 }
 

@@ -1,4 +1,5 @@
 //
+
 // Created by Alex on 18/11/2020.
 //
 
@@ -28,21 +29,7 @@ int random_obstacles(SDL_Renderer* renderer, SDL_Texture* texture_obstacle,SDL_T
     car_obstacle.y -= speed;
     car_obstacle2.y -= speed;
     car_obstacle3.y -= speed;
-    /*Entity *enemy;
 
-    if (--enemySpawnTimer <= 0){
-        enemy = malloc(sizeof(Entity));
-        memset(enemy, 0, sizeof(Entity));
-
-        enemy->x = rand() %SCREEN_WIDTH;
-        enemy->y = -50;
-        enemy->texture = enemyTexture;
-        enemy->dy = 8;
-        enemy->health = 1;
-
-        enemySpawnTimer = 30 + (rand() % 5);*/
-    //car.x = rand() % (SCREEN_WIDTH/4 + SCREEN_WIDTH/2);
-    //printf("%d\n", car.y);
     if (car_obstacle.y  <= 0) {
         newx = rand() % 14;
         switch (newx){
