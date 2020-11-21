@@ -3,29 +3,43 @@
 // Created by Alex on 18/11/2020.
 //
 
-#include "src/modules/obstacles.h"
+#include "modules/obstacles.h"
 
 //float bouge = 0;
 int newx = ROAD_LEFT;
 int newx2 = 0;
 int newx3 = 0;
+SDL_Surface* obstacle_img = NULL;
+
+//SDL_Texture *obstacles_txt[3];
+
+SDL_Texture *texture_obstacle = NULL;
+SDL_Texture *texture_obstacle2 = NULL;
+SDL_Texture *texture_obstacle3 = NULL;
 
 
-SDL_Surface* draw_obstacles() {
-    SDL_Surface *obstacle = IMG_Load("resources/img/car_3.png");
-    /*if (!obstacle) {
+int load_obstacle(){
+    obstacle_img = IMG_Load("resources/img/car_3.png");
+    if (!obstacle_img) {
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
-    }          */
-    return obstacle;
+    }
+
+
+
+    texture_obstacle = SDL_CreateTextureFromSurface(renderer, obstacle_img);
+    texture_obstacle2 = SDL_CreateTextureFromSurface(renderer, obstacle_img);
+    texture_obstacle3 = SDL_CreateTextureFromSurface(renderer, obstacle_img);
+
+    //obstacles_txt = { texture_obstacle, texture_obstacle2, texture_obstacle3 };
 }
 
 
-int random_obstacles(SDL_Renderer* renderer, SDL_Texture* texture_obstacle,SDL_Texture* texture_obstacle2,SDL_Texture* texture_obstacle3, int speed, SDL_Surface* obstacle){
+int randomize_obstacles(int speed){
     SDL_Rect src = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
-    SDL_Rect car_obstacle = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle->h/3 };
-    SDL_Rect car_obstacle2 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle->h/3 };
-    SDL_Rect car_obstacle3 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle->h/3 };
+    SDL_Rect car_obstacle = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
+    SDL_Rect car_obstacle2 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
+    SDL_Rect car_obstacle3 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
     car_obstacle.y -= speed;
     car_obstacle2.y -= speed;
     car_obstacle3.y -= speed;
@@ -79,7 +93,6 @@ int random_obstacles(SDL_Renderer* renderer, SDL_Texture* texture_obstacle,SDL_T
                 newx=ROAD_LEFT;
                 newx2=ROAD_LEFT+WAY_WIDTH+DASHED_WIDTH;
                 newx3=ROAD_LEFT+WAY_WIDTH*2+DASHED_WIDTH*2;
-                printf("10");
                 break;
             case 11 : // 2+3+4
                 newx=ROAD_LEFT+WAY_WIDTH+DASHED_WIDTH;
@@ -117,6 +130,7 @@ int random_obstacles(SDL_Renderer* renderer, SDL_Texture* texture_obstacle,SDL_T
 }
 
 
-void destroy_obstacles(SDL_Surface* obstacle){
-    SDL_FreeSurface(obstacle);
+void destroy_obstacle(){
+    // free surface memory space
+    SDL_FreeSurface(obstacle_img);
 }
