@@ -2,10 +2,10 @@
  *  Including Road module
  */
 
-#include "src/modules/road.h"
-#include "src/modules/car.h"
-#include "src/modules/obstacles.h"
-#include "src/modules/collision.h"
+#include "modules/road.h"
+#include "modules/car.h"
+#include "modules/obstacles.h"
+#include "modules/collision.h"
 
 
 void draw_solidLines(SDL_Rect solidLines[]){

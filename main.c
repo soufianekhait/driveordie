@@ -127,3 +127,4 @@ void destroy(){
     IMG_Quit();
     // quit SDL
     SDL_Quit();
+}
