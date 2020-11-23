@@ -6,6 +6,6 @@
 #define DRIVEORDIE_COLLISION_H
 #include "road.h"
 
-int collisiondetection(SDL_Rect, SDL_Rect, SDL_Rect, SDL_Rect);
+int collisiondetection(SDL_Rect*, SDL_Rect*, SDL_Rect*, SDL_Rect*, int);
 
 #endif //DRIVEORDIE_COLLISION_H

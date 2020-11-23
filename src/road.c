@@ -105,6 +105,9 @@ void move_road() {
     // car source on texture and car dest on render
     SDL_Rect carOnTxt = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_Rect carOnRnd = { SCREEN_WIDTH/2 + 20, SCREEN_HEIGHT - car_img->h/3 - 10, car_img->w/3,car_img->h/3 };
+    SDL_Rect car_obstacle = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
+    SDL_Rect car_obstacle2 = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
+    SDL_Rect car_obstacle3 = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
 
     while(running){
         SDL_Event e;
@@ -124,25 +127,26 @@ void move_road() {
         if (location.y <= 0)
             location.y = location.h;
 
-        display(location, camera, carOnTxt, carOnRnd);
+        display(location, camera, carOnTxt, carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3);
         //if(collision(&location, &imgloc))
         //SDL_BlitSurface(image, NULL, screen, &relcoord);
 
         if(1000/FPS > SDL_GetTicks()-start){
             SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
         }
-//        if (collisiondetection(car, car_obstacle, car_obstacle2, car_obstacle3)==0){
-//            running = 0;
-//        }
+//        collisiondetection(carOnRnd, car_obstacle, car_obstacle2, car_obstacle3, speed);
+        if (collisiondetection(&carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3, speed)==0){
+            running = 0;
+        }
     }
 }
 
 
-void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car){
+void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect* car_obstacle, SDL_Rect* car_obstacle2, SDL_Rect* car_obstacle3){
     SDL_SetRenderTarget(renderer, NULL);
     SDL_RenderCopy(renderer, background, &location, &camera);
     SDL_RenderCopy(renderer, car_txt, &src, &car);
-    randomize_obstacles(location.y);
+    randomize_obstacles(location.y, car_obstacle, car_obstacle2, car_obstacle3);
     // Show renderer's content
     SDL_RenderPresent(renderer);
 }
