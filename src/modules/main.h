@@ -15,6 +15,10 @@
 
 extern SDL_Surface* car_img;
 extern SDL_Texture* car_txt;
+extern SDL_Surface* menu_img;
+extern SDL_Texture* menu_txt;
+extern SDL_Surface* play_button;
+extern SDL_Texture* play_button_txt;
 extern SDL_Surface* obstacle_img;
 extern SDL_Texture* texture_obstacle;
 extern SDL_Texture* texture_obstacle2;

@@ -7,6 +7,7 @@
 #include "src/modules/car.h"
 #include "src/modules/obstacles.h"
 #include "src/modules/collision.h"
+#include "src/modules/menu.h"
 
 
 // define a color for renderer
@@ -102,17 +103,23 @@ int create_texture(){
 
 
 void draw(){
-    // draw the road
-    draw_road();
-    // draw the player
-    load_car();
-    // draw the obstacle
-    load_obstacle();
-    // move road
-    move_road();
+//    SDL_Event e;
+//    while (menu_display(e)!=1) {
+        //display the menu
+        if(load_menu()==2) {
+            // draw the road
+            draw_road();
+            // draw the player
+            load_car();
+            // draw the obstacle
+            load_obstacle();
+            // move road
+            move_road();
 
-    destroy_car(car_txt, car_img);
-    destroy_obstacle(obstacle_img);
+//            destroy_menu();
+            destroy_car(car_txt, car_img);
+            destroy_obstacle(obstacle_img);
+        }
 }
 
 
