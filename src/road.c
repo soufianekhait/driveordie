@@ -142,9 +142,7 @@ int move_road() {
         if (grass.y <= 0)
             grass.y = grass.h;
 
-        display(location, camera, carOnTxt, carOnRnd, grass, rcGrass);
-
-        display(location, camera, carOnTxt, carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3);
+        display(location, camera, carOnTxt, carOnRnd, grass, rcGrass, &car_obstacle, &car_obstacle2, &car_obstacle3);
         //if(collision(&location, &imgloc))
         //SDL_BlitSurface(image, NULL, screen, &relcoord);
 
