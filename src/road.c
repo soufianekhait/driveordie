@@ -6,6 +6,8 @@
 #include "modules/car.h"
 #include "modules/obstacles.h"
 #include "modules/background.h"
+#include "modules/collision.h"
+#include "modules/menu.h"
 
 
 void draw_solidLines(SDL_Rect solidLines[]){
@@ -93,10 +95,11 @@ int draw_road() {
 }
 
 
-void move_road() {
+int move_road() {
     int running = 1;
+    int collision = 0;
     float move = 0;
-    const int FPS = 60;
+    int FPS = 60;
     const int speed = 5;
     Uint32 start;
     //SDL_Rect imgloc = { 350,170,100,100 };
@@ -105,6 +108,10 @@ void move_road() {
     // car source on texture and car dest on render
     SDL_Rect carOnTxt = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_Rect carOnRnd = { SCREEN_WIDTH/2 + 20, SCREEN_HEIGHT - car_img->h/3 - 10, car_img->w/3,car_img->h/3 };
+
+    SDL_Rect car_obstacle = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
+    SDL_Rect car_obstacle2 = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
+    SDL_Rect car_obstacle3 = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
 
     SDL_Rect rcGrass = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_Rect grass = { 0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -125,32 +132,39 @@ void move_road() {
 
         start = SDL_GetTicks();
         location.y -= speed;
-        if (location.y <= 0)
+        if (location.y <= 0) {
             location.y = location.h;
+            FPS += 2;
+        }
 
         grass.y -= 3;
         printf("%d\n", grass.y);
         if (grass.y <= 0)
             grass.y = grass.h;
 
-
         display(location, camera, carOnTxt, carOnRnd, grass, rcGrass);
+
+        display(location, camera, carOnTxt, carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3);
         //if(collision(&location, &imgloc))
         //SDL_BlitSurface(image, NULL, screen, &relcoord);
 
         if(1000/FPS > SDL_GetTicks()-start){
             SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
         }
+        if (collisiondetection(&carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3, speed)==0){
+            running = 0;
+            return collision = 1;
+        }
     }
 }
 
 
-void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass){
+void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass, SDL_Rect* car_obstacle, SDL_Rect* car_obstacle2, SDL_Rect* car_obstacle3){
     SDL_SetRenderTarget(renderer, NULL);
     SDL_RenderCopy(renderer, grass_txt, &grass, &rcGrass);
     SDL_RenderCopy(renderer, background, &location, &camera);
     SDL_RenderCopy(renderer, car_txt, &src, &car);
-    randomize_obstacles(location.y);
+    randomize_obstacles(location.y, car_obstacle, car_obstacle2, car_obstacle3);
     // Show renderer's content
     SDL_RenderPresent(renderer);
 }

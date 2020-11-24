@@ -12,10 +12,10 @@
 
 // define signatures
 int draw_road();
-void move_road();
+int move_road();
 void draw_dashedLines(SDL_Rect tab[]);
 void draw_solidLines(SDL_Rect tab[]);
-void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass);
+void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass, SDL_Rect*, SDL_Rect*, SDL_Rect*);
 
 
 extern SDL_Window *window;

@@ -1,8 +1,10 @@
 //
+
 // Created by Alex on 18/11/2020.
 //
 
 #include "modules/obstacles.h"
+#include "modules/collision.h"
 
 //float bouge = 0;
 int newx = ROAD_LEFT;
@@ -34,30 +36,19 @@ int load_obstacle(){
 }
 
 
-int randomize_obstacles(int speed){
+int randomize_obstacles(int speed, SDL_Rect* car_obstacle, SDL_Rect* car_obstacle2, SDL_Rect* car_obstacle3){
     SDL_Rect src = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
-    SDL_Rect car_obstacle = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
-    SDL_Rect car_obstacle2 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
-    SDL_Rect car_obstacle3 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
-    car_obstacle.y -= speed;
-    car_obstacle2.y -= speed;
-    car_obstacle3.y -= speed;
-    /*Entity *enemy;
+//    SDL_Rect car_obstacle = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
+//    SDL_Rect car_obstacle2 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
+//    SDL_Rect car_obstacle3 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
+    car_obstacle->y += 5;
+    car_obstacle2->y += 5;
+    car_obstacle3->y += 5;
 
-    if (--enemySpawnTimer <= 0){
-        enemy = malloc(sizeof(Entity));
-        memset(enemy, 0, sizeof(Entity));
-
-        enemy->x = rand() %SCREEN_WIDTH;
-        enemy->y = -50;
-        enemy->texture = enemyTexture;
-        enemy->dy = 8;
-        enemy->health = 1;
-
-        enemySpawnTimer = 30 + (rand() % 5);*/
-    //car.x = rand() % (SCREEN_WIDTH/4 + SCREEN_WIDTH/2);
-    //printf("%d\n", car.y);
-    if (car_obstacle.y  <= 0) {
+    if (car_obstacle->y  >= SCREEN_HEIGHT) {
+        car_obstacle->y = 0;
+        car_obstacle2->y = 0;
+        car_obstacle3->y = 0;
         newx = rand() % 14;
         switch (newx){
             case 0 : //Voie de gauche
@@ -127,16 +118,16 @@ int randomize_obstacles(int speed){
 
 //        _sleep(500);
     }
-    car_obstacle.x = newx;
-    car_obstacle2.x = newx2;
-    car_obstacle3.x = newx3;
-    SDL_RenderCopy(renderer, texture_obstacle, &src, &car_obstacle);
+    car_obstacle->x = newx;
+    car_obstacle2->x = newx2;
+    car_obstacle3->x = newx3;
+    SDL_RenderCopy(renderer, texture_obstacle, &src, car_obstacle);
 
     if (newx2 != 0){
-        SDL_RenderCopy(renderer, texture_obstacle2, &src, &car_obstacle2);
+        SDL_RenderCopy(renderer, texture_obstacle2, &src, car_obstacle2);
     }
     if (newx3 != 0){
-        SDL_RenderCopy(renderer, texture_obstacle3, &src, &car_obstacle3);
+        SDL_RenderCopy(renderer, texture_obstacle3, &src, car_obstacle3);
     }
 
     return newx;

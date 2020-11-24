@@ -11,7 +11,7 @@
 #define WAY_WIDTH 91.25
 
 // signatures
-int randomize_obstacles(int speed);
+int randomize_obstacles(int speed, SDL_Rect*, SDL_Rect*, SDL_Rect*);
 int load_obstacle();
 void destroy_obstacle();
 
