@@ -1,6 +1,6 @@
 
 
-#include "src/modules/background.h"
+#include "modules/background.h"
 
 
 int load_background() {
