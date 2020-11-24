@@ -18,7 +18,7 @@ SDL_Texture *texture_obstacle3 = NULL;
 
 
 int load_obstacle(){
-    obstacle_img = IMG_Load("resources/img/car_3.png");
+    obstacle_img = IMG_Load("resources/img/wood.png");
     if (!obstacle_img) {
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
