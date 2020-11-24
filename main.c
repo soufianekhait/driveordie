@@ -6,6 +6,7 @@
 #include "src/modules/road.h"
 #include "src/modules/car.h"
 #include "src/modules/obstacles.h"
+#include "src/modules/background.h"
 
 
 // define a color for renderer
@@ -13,6 +14,7 @@ const SDL_Color green = { 87, 167, 115, 255 };
 SDL_Renderer *renderer = NULL;
 SDL_Window *window = NULL;
 SDL_Texture *background = NULL;
+SDL_Texture *grass_txt = NULL;
 
 // signatures
 int init();
@@ -29,6 +31,9 @@ int main(int argc, char *argv[]){
     create_renderer();
     // create texture
     create_texture();
+    load_background();
+    //load_background();
+
     // draw on screen
     draw();
     // free memory space
@@ -75,7 +80,7 @@ int create_renderer(){
         return EXIT_FAILURE;
     }
 
-    if(SDL_SetRenderDrawColor(renderer, green.r, green.g, green.b, green.a) < 0){
+    /*if(SDL_SetRenderDrawColor(renderer, green.r, green.g, green.b, green.a) < 0){
         fprintf(stderr, "SDL_SetRenderDrawColor Error: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
@@ -84,7 +89,7 @@ int create_renderer(){
     if(SDL_RenderClear(renderer) < 0){
         fprintf(stderr, "SDL_RenderClear Error: %s", SDL_GetError());
         return EXIT_FAILURE;
-    }
+    }*/
 }
 
 
