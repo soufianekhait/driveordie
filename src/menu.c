@@ -65,10 +65,6 @@ int load_menu() {
     // Show renderer's content
     SDL_RenderPresent(renderer);
 
-
-//}
-
-//int menu_display(SDL_Event emenu){
     SDL_Rect buttonPlay = {300, 190, 240, 235};
     SDL_Rect buttonQuit = {310, 450, 200, 200};
     SDL_Event emenu;
@@ -89,7 +85,6 @@ int load_menu() {
                             && emenu.motion.x < buttonQuit.x + buttonQuit.w
                             && emenu.motion.y >= buttonQuit.y
                             && emenu.motion.y < buttonQuit.y + buttonQuit.h) {
-                            printf("Bien clique");
                             continuer = 0;
                         }
                         break;

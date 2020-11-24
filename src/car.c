@@ -29,14 +29,14 @@ int move_car(SDL_Event e, float deltaTime, SDL_Rect* location, SDL_Rect* car, fl
             running = 0;
             break;
         case SDLK_RIGHT:
-            if(car->x + car->w < location->x + location->w - solidLines - 8){
-                *move+= 5.0f * deltaTime;
+            if(car->x + car->w < location->x + location->w - solidLines - 5){
+                *move+= 25.0f * deltaTime;
                 car->x += *move;
             }
             break;
         case SDLK_LEFT:
-            if(car->x > location->x + solidLines + 8){
-                *move+= 5.0f * deltaTime;
+            if(car->x > location->x + solidLines + 5){
+                *move+= 25.0f * deltaTime;
                 car->x -= *move;
             }
             break;

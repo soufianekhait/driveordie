@@ -6,7 +6,6 @@
 #define DRIVEORDIE_MENU_H
 #include "main.h"
 
-int menu_display(SDL_Event);
 int load_menu();
 void destroy_menu();
 extern SDL_Window *window;

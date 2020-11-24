@@ -94,10 +94,11 @@ int draw_road() {
 }
 
 
-void move_road() {
+int move_road() {
     int running = 1;
+    int collision = 0;
     float move = 0;
-    const int FPS = 60;
+    int FPS = 60;
     const int speed = 5;
     Uint32 start;
     //SDL_Rect imgloc = { 350,170,100,100 };
@@ -125,9 +126,10 @@ void move_road() {
         }
         start = SDL_GetTicks();
         location.y -= speed;
-        if (location.y <= 0)
+        if (location.y <= 0) {
             location.y = location.h;
-
+            FPS += 2;
+        }
         display(location, camera, carOnTxt, carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3);
         //if(collision(&location, &imgloc))
         //SDL_BlitSurface(image, NULL, screen, &relcoord);
@@ -137,6 +139,7 @@ void move_road() {
         }
         if (collisiondetection(&carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3, speed)==0){
             running = 0;
+            return collision = 1;
         }
     }
 }

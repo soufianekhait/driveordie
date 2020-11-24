@@ -45,21 +45,21 @@ int collisiondetection(SDL_Rect* car, SDL_Rect* car_obstacle,SDL_Rect* car_obsta
     //Tests de collision
     if( topCar <= bottomOb1 && leftCar <= rightOb1 && rightCar >= leftOb1 )
     {
-        return 0;
+        return collision = 0;
     }
 
     if( topCar <= bottomOb2 && leftCar <= rightOb2 && rightCar >= leftOb2 )
     {
-        return 0;
+        return collision = 0;
     }
 
     if( topCar <= bottomOb3 && leftCar <= rightOb3 && rightCar >= leftOb3 )
     {
-        return 0;
+        return collision =0;
     }
 
     //Si conditions collision detectee
-    return 1;
+    return collision = 1;
 }
 
 //    return collision;
