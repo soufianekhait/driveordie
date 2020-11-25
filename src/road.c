@@ -109,9 +109,10 @@ int move_road() {
     SDL_Rect carOnTxt = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_Rect carOnRnd = { SCREEN_WIDTH/2 + 20, SCREEN_HEIGHT - car_img->h/3 - 10, car_img->w/3,car_img->h/3 };
 
-    SDL_Rect car_obstacle = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
-    SDL_Rect car_obstacle2 = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
-    SDL_Rect car_obstacle3 = { ROAD_LEFT,0, WAY_WIDTH,obstacle_img->h/3 };
+    int newHeight = obstacle_img->h/3;
+    SDL_Rect car_obstacle = { ROAD_LEFT,0, WAY_WIDTH, newHeight };
+    SDL_Rect car_obstacle2 = { ROAD_LEFT,0, WAY_WIDTH,newHeight };
+    SDL_Rect car_obstacle3 = { ROAD_LEFT,0, WAY_WIDTH,newHeight };
 
     SDL_Rect rcGrass = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_Rect grass = { 0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -138,7 +139,6 @@ int move_road() {
         }
 
         grass.y -= 3;
-        printf("%d\n", grass.y);
         if (grass.y <= 0)
             grass.y = grass.h;
 

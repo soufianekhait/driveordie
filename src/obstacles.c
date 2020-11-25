@@ -20,7 +20,7 @@ SDL_Texture *texture_obstacle3 = NULL;
 
 
 int load_obstacle(){
-    obstacle_img = IMG_Load("resources/img/wood.png");
+    obstacle_img = IMG_Load("resources/img/car_3.png");
     if (!obstacle_img) {
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
@@ -37,10 +37,10 @@ int load_obstacle(){
 
 
 int randomize_obstacles(int speed, SDL_Rect* car_obstacle, SDL_Rect* car_obstacle2, SDL_Rect* car_obstacle3){
+    // source rectangle
     SDL_Rect src = {0,0, SCREEN_WIDTH, SCREEN_HEIGHT};
-//    SDL_Rect car_obstacle = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
-//    SDL_Rect car_obstacle2 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
-//    SDL_Rect car_obstacle3 = { ROAD_LEFT,SCREEN_HEIGHT, WAY_WIDTH,obstacle_img->h/3 };
+
+    //Incrémentation des rectangles d'obstacles
     car_obstacle->y += 5;
     car_obstacle2->y += 5;
     car_obstacle3->y += 5;
@@ -114,18 +114,19 @@ int randomize_obstacles(int speed, SDL_Rect* car_obstacle, SDL_Rect* car_obstacl
                 newx3=ROAD_LEFT+WAY_WIDTH*3+DASHED_WIDTH*3;
                 break;
         }
-//        printf("%d\n", newx);
-
-//        _sleep(500);
     }
+    //Nouvelles abscisses des obstacles
     car_obstacle->x = newx;
     car_obstacle2->x = newx2;
     car_obstacle3->x = newx3;
     SDL_RenderCopy(renderer, texture_obstacle, &src, car_obstacle);
+    printf("%d\n", car_obstacle->h);
 
+    // S'il n'y a pas d'obstacle 2
     if (newx2 != 0){
         SDL_RenderCopy(renderer, texture_obstacle2, &src, car_obstacle2);
     }
+    // S'il n'y a pas d'obstacle 3
     if (newx3 != 0){
         SDL_RenderCopy(renderer, texture_obstacle3, &src, car_obstacle3);
     }

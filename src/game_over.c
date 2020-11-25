@@ -13,45 +13,52 @@ SDL_Texture* quitGO_button_txt = NULL;
 
 
 int load_GO() {
+    // Application de l'image de Game Over sur la surface + test
     GO_img = IMG_Load("resources/img/game_over.png");
     if (!menu_img) {
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
-
+    // Application de la surface de Game Over sur la texture + test
     GO_txt = SDL_CreateTextureFromSurface(renderer, GO_img);
     if (GO_txt == NULL) {
         printf("Error while creating texture from surface: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
 
+    // Application de l'image du bouton restart sur la surface + test
     restart_button = IMG_Load("resources/img/restart_button.png");
     if (!restart_button) {
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
 
+    // Application de la surface de Restart sur la texture + test
     restart_button_txt = SDL_CreateTextureFromSurface(renderer, restart_button);
     if (restart_button_txt == NULL) {
         printf("Error while creating texture from surface: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
 
+    // Application de l'image pour quitter sur la surface  + test
     quitGO_button = IMG_Load("resources/img/quit_buttonGO.png");
     if (!quitGO_button) {
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
 
+    // Application de la surface de Quit sur la texture + test
     quitGO_button_txt = SDL_CreateTextureFromSurface(renderer, quitGO_button);
     if (quitGO_button_txt == NULL) {
         printf("Error while creating texture from surface: %s", SDL_GetError());
         return EXIT_FAILURE;
     }
-
+    //Définition du rectangle source
     SDL_Rect srcGO = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+    //Définition des rectangles de destination
     SDL_Rect destrestart = {765, 500, 75, 75};
     SDL_Rect destquitGO = {765, 605, 75, 75};
+
     SDL_SetRenderTarget(renderer, NULL);
 
     SDL_RenderCopy(renderer, GO_txt, &srcGO, NULL);
