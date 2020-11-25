@@ -20,7 +20,7 @@ SDL_Texture *texture_obstacle3 = NULL;
 
 
 int load_obstacle(){
-    obstacle_img = IMG_Load("resources/img/car_3.png");
+    obstacle_img = IMG_Load("resources/img/wood.png");
     if (!obstacle_img) {
         printf("Error while loading image: %s", SDL_GetError());
         return EXIT_FAILURE;
@@ -120,7 +120,6 @@ int randomize_obstacles(int speed, SDL_Rect* car_obstacle, SDL_Rect* car_obstacl
     car_obstacle2->x = newx2;
     car_obstacle3->x = newx3;
     SDL_RenderCopy(renderer, texture_obstacle, &src, car_obstacle);
-    printf("%d\n", car_obstacle->h);
 
     // S'il n'y a pas d'obstacle 2
     if (newx2 != 0){
