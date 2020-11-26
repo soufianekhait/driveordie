@@ -52,16 +52,10 @@ int load_menu() {
     SDL_Rect destplay = {300, 190, 240, 235};
     SDL_Rect destquit = {310, 450, 200, 200};
     SDL_SetRenderTarget(renderer, NULL);
-    // define a rectangle
-    //SDL_Rect test = {300, 190, 240, 235};
-    // fill it with red color
-    //SDL_SetRenderDrawColor(renderer, 0, 255, 0, 0);
-    // draw rectangle
 
     SDL_RenderCopy(renderer, menu_txt, &srcmenu, NULL);
     SDL_RenderCopy(renderer, play_button_txt, &srcmenu, &destplay);
     SDL_RenderCopy(renderer, quit_button_txt, &srcmenu, &destquit);
-    //SDL_RenderFillRect(renderer, &test);
     // Show renderer's content
     SDL_RenderPresent(renderer);
 

@@ -4,15 +4,12 @@
 //
 
 #include "modules/obstacles.h"
-#include "modules/collision.h"
 
 //float bouge = 0;
 int newx = ROAD_LEFT;
 int newx2 = 0;
 int newx3 = 0;
 SDL_Surface* obstacle_img = NULL;
-
-//SDL_Texture *obstacles_txt[3];
 
 SDL_Texture *texture_obstacle = NULL;
 SDL_Texture *texture_obstacle2 = NULL;
@@ -26,13 +23,12 @@ int load_obstacle(){
         return EXIT_FAILURE;
     }
 
-
+    //Création des textures pour les surfaces
 
     texture_obstacle = SDL_CreateTextureFromSurface(renderer, obstacle_img);
     texture_obstacle2 = SDL_CreateTextureFromSurface(renderer, obstacle_img);
     texture_obstacle3 = SDL_CreateTextureFromSurface(renderer, obstacle_img);
 
-    //obstacles_txt = { texture_obstacle, texture_obstacle2, texture_obstacle3 };
 }
 
 

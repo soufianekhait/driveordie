@@ -7,7 +7,6 @@
 #include "modules/obstacles.h"
 #include "modules/background.h"
 #include "modules/collision.h"
-#include "modules/game_over.h"
 #include "modules/menu.h"
 
 

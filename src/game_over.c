@@ -64,7 +64,6 @@ int load_GO() {
     SDL_RenderCopy(renderer, GO_txt, &srcGO, NULL);
     SDL_RenderCopy(renderer, restart_button_txt, &srcGO, &destrestart);
     SDL_RenderCopy(renderer, quitGO_button_txt, &srcGO, &destquitGO);
-    //SDL_RenderFillRect(renderer, &test);
     // Show renderer's content
     SDL_RenderPresent(renderer);
 
