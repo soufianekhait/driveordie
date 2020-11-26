@@ -7,6 +7,7 @@
 #include "modules/obstacles.h"
 #include "modules/background.h"
 #include "modules/collision.h"
+#include "modules/game_over.h"
 #include "modules/menu.h"
 
 
@@ -97,23 +98,24 @@ int draw_road() {
 
 int move_road() {
     int running = 1;
-    int collision = 0;
     float move = 0;
-    int FPS = 60;
+    int collision = 0;
+    const int FPS = 60;
     const int speed = 5;
     Uint32 start;
-    //SDL_Rect imgloc = { 350,170,100,100 };
     SDL_Rect location = { SCREEN_WIDTH/4, SCREEN_HEIGHT, SCREEN_WIDTH/2, SCREEN_HEIGHT };
     SDL_Rect camera = {SCREEN_WIDTH/4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT };
     // car source on texture and car dest on render
     SDL_Rect carOnTxt = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-    SDL_Rect carOnRnd = { SCREEN_WIDTH/2 + 20, SCREEN_HEIGHT - car_img->h/3 - 10, car_img->w/3,car_img->h/3 };
+    SDL_Rect carOnRnd = { SCREEN_WIDTH/2 - car_img->w/6 , SCREEN_HEIGHT - car_img->h/3 - 10, car_img->w/3,car_img->h/3 };
 
+    //obstacles source
     int newHeight = obstacle_img->h/3;
     SDL_Rect car_obstacle = { ROAD_LEFT,0, WAY_WIDTH, newHeight };
     SDL_Rect car_obstacle2 = { ROAD_LEFT,0, WAY_WIDTH,newHeight };
     SDL_Rect car_obstacle3 = { ROAD_LEFT,0, WAY_WIDTH,newHeight };
 
+    //background source
     SDL_Rect rcGrass = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_Rect grass = { 0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT };
 
@@ -130,30 +132,30 @@ int move_road() {
                     break;
             }
         }
-
+        //Road movement
         start = SDL_GetTicks();
         location.y -= speed;
         if (location.y <= 0) {
             location.y = location.h;
-            FPS += 2;
         }
-
+        // Background movement
         grass.y -= 3;
         if (grass.y <= 0)
             grass.y = grass.h;
 
+        //display road
         display(location, camera, carOnTxt, carOnRnd, grass, rcGrass, &car_obstacle, &car_obstacle2, &car_obstacle3);
-        //if(collision(&location, &imgloc))
-        //SDL_BlitSurface(image, NULL, screen, &relcoord);
 
         if(1000/FPS > SDL_GetTicks()-start){
             SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
         }
+        //In case of detection
         if (collisiondetection(&carOnRnd, &car_obstacle, &car_obstacle2, &car_obstacle3, speed)==0){
-            running = 0;
-            return collision = 1;
+            collision = 1;
+            return collision;
         }
     }
+    return running;
 }
 
 

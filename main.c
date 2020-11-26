@@ -98,33 +98,31 @@ int create_texture(){
 
 void draw(){
     int restart = 1;
-
-        //display the menu
-        if (load_menu() == 2) {
-            while (restart == 1) {
-                // draw the road
-                draw_road();
-                // draw the player
-                load_car();
-                // draw the obstacle
-                load_obstacle();
-                // move road
-
-                if (move_road() == 1) {
-                    if (load_GO() == 2) {
-                        restart = 1;
-                    } else {
-                        restart = 0;
-                    }
+    //display the menu
+    if (load_menu() == 2) {
+        while (restart == 1) {
+            // draw the road
+            draw_road();
+            // draw the player
+            load_car();
+            // draw the obstacle
+            load_obstacle();
+            // move road
+            if (move_road() == 1) {
+                if (load_GO() == 2) {
+                    restart = 1;
+                } else {
+                    restart = 0;
                 }
+            } else{
+                restart = 0;
             }
         }
-            destroy_menu();
-            destroy_GO();
-            destroy_car(car_txt, car_img);
-            destroy_obstacle(obstacle_img);
-
-
+    }
+        destroy_menu();
+        destroy_GO();
+        destroy_car(car_txt, car_img);
+        destroy_obstacle(obstacle_img);
     }
 
 

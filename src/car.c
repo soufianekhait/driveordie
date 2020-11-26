@@ -29,15 +29,18 @@ int move_car(SDL_Event e, float deltaTime, SDL_Rect* location, SDL_Rect* car, fl
             running = 0;
             break;
         case SDLK_RIGHT:
-            if(car->x + car->w < location->x + location->w - solidLines - 5){
-                *move+= 25.0f * deltaTime;
-                car->x += *move;
+            if(car->x + car->w < location->x + location->w - solidLines - 8){
+                //*move+= 25.0f * deltaTime;
+                //car->x += *move;
+                //On a essayé de rendre le déplacement "smooth" mais le deltaTime augmentant le jeu devient injouable
+                car->x += 6;
             }
             break;
         case SDLK_LEFT:
-            if(car->x > location->x + solidLines + 5){
-                *move+= 25.0f * deltaTime;
-                car->x -= *move;
+            if(car->x > location->x + solidLines + 8){
+                //*move+= 25.0f * deltaTime;
+                //car->x -= *move;
+                car->x -= 6;
             }
             break;
     }
@@ -85,5 +88,3 @@ int function_score(){
 
     return score;
 }
-
-//int computeSpeed(){}
