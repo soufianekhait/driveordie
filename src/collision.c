@@ -6,7 +6,7 @@
 
 int collisiondetection(SDL_Rect* car, SDL_Rect* car_obstacle,SDL_Rect* car_obstacle2,SDL_Rect* car_obstacle3, int speed){
 
-    int collision;
+    int collision = 1;
 
     //Les cotes des rectangles
     int leftCar, leftOb1, leftOb2, leftOb3;
@@ -41,20 +41,23 @@ int collisiondetection(SDL_Rect* car, SDL_Rect* car_obstacle,SDL_Rect* car_obsta
     //Tests de collision
     if( topCar <= bottomOb1 && leftCar <= rightOb1 && rightCar >= leftOb1 )
     {
-        return collision = 0;
+        collision = 0;
+        return collision;
     }
 
     if( topCar <= bottomOb2 && leftCar <= rightOb2 && rightCar >= leftOb2 )
     {
-        return collision = 0;
+        collision = 0;
+        return collision;
     }
 
     if( topCar <= bottomOb3 && leftCar <= rightOb3 && rightCar >= leftOb3 )
     {
-        return collision =0;
+        collision = 0;
+        return collision;
     }
 
     //Si conditions collision detectee
-    return collision = 1;
+    return collision;
 }
 
