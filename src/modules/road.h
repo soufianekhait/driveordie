@@ -15,7 +15,7 @@ int draw_road();
 int move_road();
 void draw_dashedLines(SDL_Rect tab[]);
 void draw_solidLines(SDL_Rect tab[]);
-void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass, SDL_Rect*, SDL_Rect*, SDL_Rect*);
+void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass, SDL_Rect*, SDL_Rect*, SDL_Rect*, int);
 
 
 extern SDL_Window *window;

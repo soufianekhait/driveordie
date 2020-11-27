@@ -8,6 +8,7 @@
 #include "modules/background.h"
 #include "modules/collision.h"
 #include "modules/menu.h"
+#include "modules/score.h"
 
 
 void draw_solidLines(SDL_Rect solidLines[]){
@@ -96,6 +97,7 @@ int draw_road() {
 
 
 int move_road() {
+    double score = 1;
     int running = 1;
     int collision = 0;
     float move = 0;
@@ -130,7 +132,6 @@ int move_road() {
                     break;
             }
         }
-
         start = SDL_GetTicks();
         location.y -= speed;
         if (location.y <= 0) {
@@ -138,14 +139,14 @@ int move_road() {
             FPS += 2;
         }
 
-        grass.y -= 3;
+        grass.y -= 4;
         if (grass.y <= 0)
             grass.y = grass.h;
 
-        display(location, camera, carOnTxt, carOnRnd, grass, rcGrass, &car_obstacle, &car_obstacle2, &car_obstacle3);
+        display(location, camera, carOnTxt, carOnRnd, grass, rcGrass, &car_obstacle, &car_obstacle2, &car_obstacle3, score);
         //if(collision(&location, &imgloc))
         //SDL_BlitSurface(image, NULL, screen, &relcoord);
-
+        score = computeScore(score);
         if(1000/FPS > SDL_GetTicks()-start){
             SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
         }
@@ -157,12 +158,13 @@ int move_road() {
 }
 
 
-void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass, SDL_Rect* car_obstacle, SDL_Rect* car_obstacle2, SDL_Rect* car_obstacle3){
+void display(SDL_Rect location, SDL_Rect camera, SDL_Rect src, SDL_Rect car, SDL_Rect grass, SDL_Rect rcGrass, SDL_Rect* car_obstacle, SDL_Rect* car_obstacle2, SDL_Rect* car_obstacle3, int score){
     SDL_SetRenderTarget(renderer, NULL);
     SDL_RenderCopy(renderer, grass_txt, &grass, &rcGrass);
     SDL_RenderCopy(renderer, background, &location, &camera);
     SDL_RenderCopy(renderer, car_txt, &src, &car);
     randomize_obstacles(location.y, car_obstacle, car_obstacle2, car_obstacle3);
+    displayScore(score);
     // Show renderer's content
     SDL_RenderPresent(renderer);
 }
