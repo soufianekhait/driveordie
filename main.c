@@ -10,6 +10,7 @@
 #include "src/modules/collision.h"
 #include "src/modules/menu.h"
 #include "src/modules/game_over.h"
+#include "src/modules/score.h"
 
 
 // define a color for renderer
@@ -55,6 +56,11 @@ int init(){
     // initialize SDL Image
     if((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG){
         fprintf(stderr, "IMG_Init Error: %s", IMG_GetError());
+        return EXIT_FAILURE;
+    }
+    // initialize SDL TTF
+    if(TTF_Init() < 0){
+        fprintf(stderr, "TTF_Init Error: %s", TTF_GetError());
         return EXIT_FAILURE;
     }
 }
@@ -109,7 +115,6 @@ void draw(){
                 // draw the obstacle
                 load_obstacle();
                 // move road
-
                 if (move_road() == 1) {
                     if (load_GO() == 2) {
                         restart = 1;
@@ -123,7 +128,7 @@ void draw(){
             destroy_GO();
             destroy_car(car_txt, car_img);
             destroy_obstacle(obstacle_img);
-
+            destroyScore();
 
     }
 
@@ -135,6 +140,8 @@ void destroy(){
     SDL_DestroyRenderer(renderer);
     // free window memory space
     SDL_DestroyWindow(window);
+    // quit SDL TTF
+    TTF_Quit();
     // quit SDL Image
     IMG_Quit();
     // quit SDL
